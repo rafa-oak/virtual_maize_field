@@ -20,7 +20,6 @@ from virtual_maize_field.world_generator.world_description import WorldDescripti
 class WorldGenerator:
     def __init__(self, **kwargs) -> None:
         self.wd = WorldDescription(**kwargs)
-        #asd
 
         self.fgen = Field2DGenerator(self.wd)
         self.pkg_path = Path(get_package_share_directory("virtual_maize_field"))
@@ -135,7 +134,7 @@ class WorldGenerator:
             content = launch_file_template.render(
                 x=float(self.fgen.start_loc[0][0]) + self.wd.rng.random() * 0.1 - 0.05,
                 y=float(self.fgen.start_loc[0][1]) + self.wd.rng.random() * 0.1 - 0.05,
-                z=0.35,
+                z=0.35 + self.wd.ground_ditch_depth,
                 roll=0,
                 pitch=0,
                 yaw=1.5707963267948966 + self.wd.rng.random() * 0.1 - 0.05,
